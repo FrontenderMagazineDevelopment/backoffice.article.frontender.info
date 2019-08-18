@@ -8,7 +8,8 @@
     "build": "next build",
     "next": "next start",
     "start": "cross-env NODE_ENV=production node server.js",
-    "start:dev": "cross-env NODE_ENV=development node server.js"
+    "start:dev": "cross-env NODE_ENV=development node server.js",
+    "test": "bundlesize"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
@@ -21,6 +22,7 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "bundlesize": "^0.18.0",
     "cross-env": "^5.2.0"
   },
   "repository": {
