@@ -3,6 +3,14 @@
     {
       "path": "./.next/static/chunks/*.js",
       "maxSize": "300 kB"
+    },
+    {
+      "path": "./.next/static/**/pages/*.js",
+      "maxSize": "300 kB"
+    },
+    {
+      "path": "./.next/static/runtime/*.js",
+      "maxSize": "300 kB"
     }
   ]
 }

@@ -1,11 +1,21 @@
 import React from 'react';
+const Joi = require('@hapi/joi');
 // import Home from 'components/atoms';
+
+const schema = Joi.object().keys({
+  url: Joi.string().required(),
+});
+
 
 export default ()=>{
   return (
-    <form action="/parse" methos="post">
+    <form action="/parse" methos="post" onSubmit={(event => {
+      event.preventDefault();
+      const url = document.getElementById('article-url').value;
+      const result = Joi.validate({ url }, schema);
+    })}>
       <fieldset>
-        <label for="article-url">Введите URL статьи:</label>
+        <label htmlFor="article-url">Введите URL статьи:</label>
         <input 
           autoFocus
           id="article-url" 
@@ -15,37 +25,35 @@ export default ()=>{
           pattern="http(s)?://.*"
           size="120"
           required
-          spellcheckSection="false"
+          spellCheck="false"
            />
         <button>сгенерировать slug</button>
       </fieldset>
       <fieldset>
-        <label for="article-url">Слаг:</label>
+        <label htmlFor="article-slug">Слаг:</label>
         <input 
           autoFocus
-          id="article-url" 
-          name="url"
-          type="url"
+          id="article-slug" 
+          name="slug"
+          type="text"
           placeholder=""
-          pattern="http(s)?://.*"
           size="80"
           required
-          spellcheckSection="false"
+          spellCheck="false"
            />
         <button>распарсить статью</button>
       </fieldset>
       <fieldset>
-        <label for="article-url">Добавить тэг:</label>
+        <label htmlFor="article-tag">Добавить тэг:</label>
         <input 
           autoFocus
-          id="article-url" 
-          name="url"
-          type="url"
+          id="article-tag" 
+          name="tag"
+          type="text"
           placeholder=""
-          pattern="http(s)?://.*"
           size="80"
           required
-          spellcheckSection="false"
+          spellCheck="false"
            />
         <button>распарсить статью</button>
       </fieldset>
