@@ -10,8 +10,8 @@ dotenv.config({
 const { PORT, JWT_SECRET, NODE_ENV } = process.env;
 
 const port = parseInt(PORT, 10) || 3000;
-const dev = NODE_ENV !== 'production';
-const app = next({ dev });
+const isProduction = NODE_ENV === 'production';
+const app = next({ dev: !isProduction });
 const handle = app.getRequestHandler();
 const jwtOptions = {
   secret: JWT_SECRET,
@@ -32,7 +32,7 @@ const jwtOptions = {
 app.prepare().then(() => {
   const server = express();
 
-  if (!dev) {
+  if (isProduction) {
     server.use(
       jwt(jwtOptions).unless({
         method: 'OPTIONS',
@@ -42,6 +42,7 @@ app.prepare().then(() => {
 
   server.use(function (err, req, res, next) {
     console.log('check: ', err)
+    console.log('name: ', err.name)
     if (err.name === 'UnauthorizedError') {
       res.redirect(302, 'http://token.frontender.info/?to=http://localhost:3000');
     }
