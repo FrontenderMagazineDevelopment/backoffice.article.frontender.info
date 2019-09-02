@@ -1,7 +1,0 @@
-checks:
-  - name: build-size-watcher
-    options:
-      files:
-        - path: "./.next/static/chunks/*.js"
-        - path: "./.next/static/**/pages/*.js"
-        - path: "./.next/static/runtime/*.js"
